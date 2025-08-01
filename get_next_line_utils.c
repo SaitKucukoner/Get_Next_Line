@@ -1,38 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/01 15:27:19 by skucukon          #+#    #+#             */
+/*   Updated: 2025/08/01 15:29:00 by skucukon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	len;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return(i);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
-char *ft_strchr(char *str)
+
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (str[i])
+	if (!s)
+		return (NULL);
+	while (s[i])
 	{
-		if (str[i] == '\n')
-			return (&str[i]);
-		i++;	
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
 	}
+	if (c == '\0')
+		return ((char *)&s[i]);
 	return (NULL);
 }
 
-char *ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	int i;
-	char *s3;
-	int	s1_len;
-	int	s2_len;
+	int		i;
+	int		j;
+	char	*s3;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	s3 = (char *)malloc(s1_len + s2_len + 1);
+	if (!s1 || !s2)
+		return (NULL);
+	s3 = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (s3 == NULL)
 		return (NULL);
 	i = 0;
@@ -41,17 +57,19 @@ char *ft_strjoin(char *s1, char *s2)
 		s3[i] = s1[i];
 		i++;
 	}
-	while (s2[i])
+	j = 0;
+	while (s2[j])
 	{
-		s3[i] = s2[i];
+		s3[i] = s2[j];
 		i++;
+		j++;
 	}
 	s3[i] = '\0';
 	return (s3);
 }
 // kucukoner kucuk 
 
-char *ft_strdup(char *str)
+char	*ft_strdup(const char *str)
 {
 	char	*cpy_str;
 	int		i;
@@ -71,14 +89,29 @@ char *ft_strdup(char *str)
 	return (cpy_str);
 }
 
-char *ft_substr(char *str, int start, int len)
+char	*ft_substr(const char *str, size_t start, size_t len)
 {
-	char	*sub_str;
-	int		i;
-	int		str_len;
+	char	*substr;
+	size_t	sub_len;
+	size_t	i;
 
-	i = 0;
-	str_len = ft_strlen(str);
-	if (start > str_len)
+	if (!str)
 		return (NULL);
+	if (start >= ft_strlen(str))
+		return (ft_strdup(""));
+	if (ft_strlen(str) - start < len)
+		sub_len = ft_strlen(str) - start;
+	else
+		sub_len = len;
+	substr = (char *)malloc(sub_len + 1);
+	if (substr == NULL)
+		return (NULL);
+	i = 0;
+	while (sub_len--)
+	{
+		substr[i] = str[start + i];
+		i++;
+	}
+	substr[i] = '\0';
+	return (substr);
 }
