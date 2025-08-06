@@ -2,7 +2,7 @@
 # define GET_NEXT_LINE_H
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 4
+# define BUFFER_SIZE 2
 #endif
 
 #include <fcntl.h>
@@ -13,5 +13,6 @@ char	*get_next_line(int fd);
 int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_strdup(const char *s);
 
 #endif
