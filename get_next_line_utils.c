@@ -6,7 +6,7 @@
 /*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:41:55 by skucukon          #+#    #+#             */
-/*   Updated: 2025/08/17 13:56:51 by skucukon         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:25:22 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	*ft_strdup(const char *s)
 	char	*newstr;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	newstr = malloc(ft_strlen(s) + 1);
 	if (!newstr)
 		return (NULL);

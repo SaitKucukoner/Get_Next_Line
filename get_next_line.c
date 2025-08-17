@@ -6,7 +6,7 @@
 /*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:45:04 by skucukon          #+#    #+#             */
-/*   Updated: 2025/08/17 13:49:35 by skucukon         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:42:02 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char	*free_buffer(char *buffer)
 {
 	free(buffer);
-	buffer = NULL;
 	return (NULL);
 }
 
@@ -43,7 +42,7 @@ char	*seperate_new_line(char **buffer)
 	char	*pos_newline;
 	int		len;
 
-	if (!*buffer || !*buffer[0])
+	if (!*buffer || !(*buffer)[0])
 		return (free_buffer(*buffer));
 	pos_newline = ft_strchr(*buffer, '\n');
 	if (pos_newline)
@@ -53,12 +52,10 @@ char	*seperate_new_line(char **buffer)
 	print_line = fill_line(*buffer, len);
 	if (!print_line)
 		return (free_buffer(*buffer));
-	if (pos_newline)
-		new_buf = ft_strdup((char *)(pos_newline + 1));
+	if (pos_newline && *(pos_newline + 1))
+		new_buf = ft_strdup(pos_newline + 1);
 	else
-		new_buf = ft_strdup((char *)(buffer + 1));
-	if (!new_buf)
-		return (free_buffer(*buffer));
+		new_buf = NULL;
 	free_buffer(*buffer);
 	*buffer = new_buf;
 	return (print_line);
@@ -72,26 +69,34 @@ char	*read_file(int fd, char *buffer)
 
 	tmp_buf = malloc(BUFFER_SIZE + 1);
 	if (!tmp_buf)
-		return (NULL);
-	bytes_read = 1;
-	while (bytes_read > 0 && !ft_strchr(buffer, '\n'))
+		return (free_buffer(buffer));
+	while (!buffer || !ft_strchr(buffer, '\n'))
 	{
 		bytes_read = read(fd, tmp_buf, BUFFER_SIZE);
+		if (bytes_read <= 0)
+		{
+			if (bytes_read == -1)
+				free_buffer(buffer);
+			break ;
+		}
 		tmp_buf[bytes_read] = '\0';
 		tmp = ft_strjoin(buffer, tmp_buf);
+		if (!tmp)
+			return (free(tmp_buf), free_buffer(buffer));
 		free_buffer(buffer);
 		buffer = tmp;
 	}
-	free_buffer(tmp_buf);
-	return (buffer);
+	return (free(tmp_buf), buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = read_file(fd, buffer);
+	if (!buffer)
+		return (NULL);
 	return (seperate_new_line(&buffer));
 }

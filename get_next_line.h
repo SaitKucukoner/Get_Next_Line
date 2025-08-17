@@ -6,7 +6,7 @@
 /*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:49:49 by skucukon          #+#    #+#             */
-/*   Updated: 2025/08/17 13:52:38 by skucukon         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:00:30 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 100000
 # endif
 
 char	*get_next_line(int fd);
