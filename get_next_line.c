@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skucukon <skucukon@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 13:45:04 by skucukon          #+#    #+#             */
-/*   Updated: 2025/08/17 15:42:02 by skucukon         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:52:52 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*free_buffer(char *buffer)
+static char	*free_buffer(char *buffer)
 {
 	free(buffer);
 	return (NULL);
 }
 
-char	*fill_line(char *buffer, int len)
+static char	*fill_line(char *buffer, int len)
 {
 	char	*line;
 	int		i;
@@ -35,7 +35,7 @@ char	*fill_line(char *buffer, int len)
 	return (line);
 }
 
-char	*seperate_new_line(char **buffer)
+static char	*seperate_new_line(char **buffer)
 {
 	char	*print_line;
 	char	*new_buf;
@@ -61,10 +61,10 @@ char	*seperate_new_line(char **buffer)
 	return (print_line);
 }
 
-char	*read_file(int fd, char *buffer)
+static char	*read_file(int fd, char *buffer)
 {
 	char	*tmp_buf;
-	int		bytes_read;
+	ssize_t	bytes_read;
 	char	*tmp;
 
 	tmp_buf = malloc(BUFFER_SIZE + 1);
