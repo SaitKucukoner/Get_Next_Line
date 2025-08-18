@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skucukon <skucukon@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: skucukon <skucukon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/17 13:45:04 by skucukon          #+#    #+#             */
-/*   Updated: 2025/08/17 17:52:52 by skucukon         ###   ########.fr       */
+/*   Created: 2025/08/18 18:43:22 by skucukon          #+#    #+#             */
+/*   Updated: 2025/08/18 18:43:24 by skucukon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
