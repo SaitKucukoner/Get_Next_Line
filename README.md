@@ -1,12 +1,31 @@
-# get_next_line
+# Get Next Line
+📌 Project Overview
 
-Its purpose is to implement a function that allows reading from a file descriptor **line by line**, regardless of the file size or line length.  
+The Get Next Line project aims to implement a function that allows reading a file line by line from a given file descriptor.
+This function is capable of handling newline characters properly and ensures that leftover data is preserved for the next call.
 
-This project was a key step in learning about **static variables** and **memory management** in C.
+The project provides a solid understanding of:
 
----
+Buffer management
 
-## Function Prototype
+Static variables
 
-```c
-char *get_next_line(int fd);
+Dynamic memory allocation
+
+⚙️ How It Works
+
+The file is read in chunks of size BUFFER_SIZE.
+
+If a newline (\n) is encountered, the function stops and returns the line including the newline character.
+
+Any leftover data after the newline is stored in a static variable (buffer) and used in the next call.
+
+Both newline and null terminator cases are properly handled.
+
+📂 Files
+
+get_next_line.c → Core implementation of the function.
+
+get_next_line.h → Header file containing function prototypes and macros.
+
+get_next_line_utils.c → Utility functions (string operations, memory handling, etc.).
