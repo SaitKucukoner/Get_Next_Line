@@ -1,6 +1,7 @@
 # Get Next Line
 
 ### Project Overview
+---
 
 The Get Next Line project aims to implement a function that allows reading a file line by line from a given file descriptor.
 This function is capable of handling newline characters properly and ensures that leftover data is preserved for the next call.
@@ -16,6 +17,7 @@ Dynamic memory allocation
 ---
 
 ### How It Works
+---
 
 The file is read in chunks of size BUFFER_SIZE.
 
@@ -28,6 +30,7 @@ Both newline and null terminator cases are properly handled.
 ---
 
 ### Files
+---
 
 get_next_line.c → Core implementation of the function.
 
