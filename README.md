@@ -17,7 +17,6 @@ Dynamic memory allocation
 ---
 
 ### How It Works
----
 
 The file is read in chunks of size BUFFER_SIZE.
 
@@ -30,10 +29,11 @@ Both newline and null terminator cases are properly handled.
 ---
 
 ### Files
----
 
 get_next_line.c → Core implementation of the function.
 
 get_next_line.h → Header file containing function prototypes and macros.
 
 get_next_line_utils.c → Utility functions (string operations, memory handling, etc.).
+
+---
